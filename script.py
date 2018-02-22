@@ -44,7 +44,7 @@ class Script:
         elif self.elements[0] == 0x76 \
             and self.elements[1] == 0xa9 \
             and type(self.elements[2]) == bytes \
-            and len(self.elements[2]) == 0x14 \
+            and (len(self.elements[2]) == 0x14 or len(self.elements[2]) == 0x15) \
             and self.elements[3] == 0x88 \
             and self.elements[4] == 0xac:
             # p2pkh:
@@ -52,7 +52,7 @@ class Script:
             return 'p2pkh'
         elif self.elements[0] == 0xa9 \
             and type(self.elements[1]) == bytes \
-            and len(self.elements[1]) == 0x14 \
+            and (len(self.elements[1]) == 0x14 or len(self.elements[2]) == 0x15) \
             and self.elements[-1] == 0x87:
             # p2sh:
             # OP_HASH160 <20-byte hash> <OP_EQUAL>

@@ -47,3 +47,11 @@ class ScriptTest(TestCase):
         self.assertEqual(script_pubkey.address(prefix=b'\x05'), want)
         want = '2N3u1R6uwQfuobCqbCgBkpsgBxvr1tZpe7B'
         self.assertEqual(script_pubkey.address(prefix=b'\xc4'), want)
+        
+    def test_long_hash(self):
+        script_raw = unhexlify('76a915c45f1b548d1bc074828c415639b207a19cea1b5d4a88ac')
+        script_pubkey = Script.parse(script_raw)
+        print(script_pubkey.elements)
+        want = '12N1v6vSzDHn1kEDoueNL3yPBFUJp1qVgKt9'
+        self.assertEqual(script_pubkey.address(), want)
+        
